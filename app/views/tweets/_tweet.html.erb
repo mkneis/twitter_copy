@@ -1,5 +1,5 @@
 <div id="<%= dom_id tweet %>">
-  <p>
+  <!-- <p>
     <strong>Username:</strong>
     <%= tweet.username %>
     
@@ -9,6 +9,25 @@
     <strong>Description:</strong>
     <%= tweet.description %>
     
-  </p>
+  </p> -->
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center"> 
+      <h5 class="mb-0"><%= tweet.username %></h5>
+      <p class="mb-0"><%= tweet.created_at.in_time_zone("Santiago").strftime("%H.%M hrs") %></p>
+    </div>
+  
+    
+    <div class="card-body">
+      <p class="card-text"><%= tweet.description %></p>
+      
+    
+
+  
+  
+
+
+
+
+
 
 </div>

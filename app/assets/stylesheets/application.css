@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+ .paginacion {
+    display: flex;
+    justify-content: center;
+ }
+
+.top {
+    background-color:#0dcaf1;
+}
+
+.titulo {
+    font-family: 'Modak', cursive;
+}

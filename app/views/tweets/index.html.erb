@@ -1,33 +1,50 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Tweets</h1>
 
-<%= form_with url: tweets_path, method: :get do |form|%>
-  <%= form.text_field :query_text, placeholder: t('Datos'), value: params[:query_text]%>
-<%end%>
+
+<div class ="d-flex align-items-center justify-content-between mt-5">
+  <div class = "ms-5 mb-3">
+    <%= form_with url: tweets_path, method: :get do |form|%>
+      <%= form.text_field :query_text, placeholder: 'Buscar', value: params[:query_text], class: "form-control"%>
+    <%end%>
+  
+  </div>
+  
+  <%= link_to "New tweet", new_tweet_path, class: "text-white btn btn-info mb-3 me-5" %>
+</div>
+
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
-  <% end %>
-</div>
+  <div class="card mb-4 mx-5">
+    <div class="card-header d-flex justify-content-between align-items-center"> 
+      <h5 class="mb-0"><%= tweet.username %></h5>
+      <p class="mb-0"><%= tweet.created_at.in_time_zone("Santiago").strftime("%H.%M hrs") %></p>
+    </div>
 
-<%= link_to "New tweet", new_tweet_path %>
-
-<% if @tweets.length == 10 %>
-  <%== pagy_nav(@pagy) %>
-<% end %>
-
-<% @tweets.each do |tweet| %>
-  <div class="card mb-4">
-    <h5 class="card-header"><%= tweet.username %></h5>
+    
     <div class="card-body">
       <p class="card-text"><%= tweet.description %></p>
-      <%= link_to "Show this tweet", tweet %>
+      <div class="text-end">
+        
+        <%= link_to "Show this tweet", tweet, class: "text-white btn btn-info" %>
+      </div>
+      
     </div>
   </div>
 <% end %>
+
+</div>
+
+
+
+<div class="paginacion">
+  <%== pagy_bootstrap_nav(@pagy)%>
+</div>
+  
+
+
+
+
+
 
