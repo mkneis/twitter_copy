@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+<%= form_with url: tweets_path, method: :get do |form|%>
+  <%= form.text_field :query_text, placeholder: t('Datos'), value: params[:query_text]%>
+<%end%>
+
+<div id="tweets">
+  <% @tweets.each do |tweet| %>
+    <%= render tweet %>
+    <p>
+      <%= link_to "Show this tweet", tweet %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tweet", new_tweet_path %>
+
+<% if @tweets.length == 10 %>
+  <%== pagy_nav(@pagy) %>
+<% end %>
+
+<% @tweets.each do |tweet| %>
+  <div class="card mb-4">
+    <h5 class="card-header"><%= tweet.username %></h5>
+    <div class="card-body">
+      <p class="card-text"><%= tweet.description %></p>
+      <%= link_to "Show this tweet", tweet %>
+    </div>
+  </div>
+<% end %>
+
